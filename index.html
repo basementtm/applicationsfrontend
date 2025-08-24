@@ -143,6 +143,101 @@
     width: 100%;          /* matches container width */
     box-sizing: border-box;
 }
+.form-group {
+  margin: 10px 0;
+  text-align: left;
+}
+
+/* Base animated select */
+.animated-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards;
+  background-color: #fff0f5; /* matches form background */
+  color: #333;
+  appearance: none; /* removes default arrow in many browsers */
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width='14'%20height='10'%20viewBox='0%200%2014%2010'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201l6%206%206-6'%20stroke='%23ff1493'%20stroke-width='2'%20fill='none'%20fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px 10px;
+}
+
+/* Focus animation */
+.animated-input:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 5px rgba(255,20,147,0.5);
+  outline: none;
+  background-color: #fff0f5;
+}
+
+/* Hover effect to mimic radio buttons */
+.animated-input:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 5px rgba(255,20,147,0.3);
+}
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff0f5;
+  cursor: pointer;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards;
+}
+
+.custom-dropdown .selected {
+  color: #333;
+}
+
+.custom-dropdown .options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff0f5;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5px;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.custom-dropdown .options div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.custom-dropdown .options div:hover {
+  background-color: #ff69b4;
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.custom-dropdown.active {
+  box-shadow: 0 0 5px rgba(255,20,147,0.5);
+}
+
+.custom-dropdown.active .options {
+  display: block;
+}
+
   </style>
 </head>
 <body>
@@ -159,8 +254,21 @@
       <input type="tel" name="gfphone" placeholder="girlfriend's phone number (optional)">
       <textarea name="reason" rows="4" placeholder="why did you apply" required></textarea>
       <input type="number" name="cage" placeholder="how many times have you slept in a cage this week" min="0" max="7" required>
-      
-      <label style="font-weight:bold; display:block; margin-top:10px;">Are you a cat?</label>
+      <div class="form-group">
+  <label class="animated-label">Preferred Location to Work At:</label>
+  <div class="custom-dropdown" id="locationDropdown">
+    <div class="selected">Select a location</div>
+    <div class="options">
+      <div data-value="Trg Sv. Martina 8, 40313, Sveti Martin na Muri, Croatia">Trg Sv. Martina 8, 40313, Sveti Martin na Muri, Croatia</div>
+      <div data-value="Vršanska ul. 18 A, 51500, Krk, Croatia">Vršanska ul. 18 A, 51500, Krk, Croatia</div>
+      <div data-value="Gundulićeva poljana 4, 20230, Ston, Croatia">Gundulićeva poljana 4, 20230, Ston, Croatia</div>
+      <div data-value="[ADDRESS TBD], Hackpines, DRHC">[ADDRESS TBD], Hackpines, DRHC</div>
+    </div>
+    <input type="hidden" name="preferredLocation" required>
+  </div>
+</div>
+
+    <label style="font-weight:bold; display:block; margin-top:10px;">Are you a cat?</label>
 
 <div class="radio-group">
   <input type="radio" id="catYes" name="isCat" value="Yes" required>
@@ -204,6 +312,30 @@
 
     catYes.addEventListener("change", () => { ownerField.style.display = "block"; });
     catNo.addEventListener("change", () => { ownerField.style.display = "none"; });
+
+    const dropdown = document.getElementById("locationDropdown");
+const selected = dropdown.querySelector(".selected");
+const optionsContainer = dropdown.querySelector(".options");
+const hiddenInput = dropdown.querySelector("input[type='hidden']");
+
+selected.addEventListener("click", () => {
+  dropdown.classList.toggle("active");
+});
+
+optionsContainer.querySelectorAll("div").forEach(option => {
+  option.addEventListener("click", () => {
+    selected.textContent = option.textContent;
+    hiddenInput.value = option.dataset.value;
+    dropdown.classList.remove("active");
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", (e) => {
+  if (!dropdown.contains(e.target)) {
+    dropdown.classList.remove("active");
+  }
+});
   </script>
 </body>
 </html>
