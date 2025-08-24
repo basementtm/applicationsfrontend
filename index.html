@@ -169,7 +169,6 @@
   <input type="radio" id="catNo" name="isCat" value="No" required>
   <label for="catNo">No</label>
 </div>
-
       <!-- Optional owner field -->
       <input type="text" name="owner" id="ownerField" placeholder="Owner's name and/or email address (for cats only)" style="display:none;">
 
@@ -180,13 +179,12 @@
   </a>
 </p>
     </form>
-  </div>
-
-  <div id="maintenance" style="display:none;">
+</div>
+</div>
+<div id="maintenance" style="display:none;">
     <h1>🚧 Applications Closed</h1>
     <p>Applications are currently closed, check back later!</p>
   </div>
-
   <script>
     // Maintenance check
     fetch("https://submit.emmameowss.gay/status.php")
