@@ -237,6 +237,59 @@
 .custom-dropdown.active .options {
   display: block;
 }
+/* Custom checkbox styling */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin: 15px 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+  user-select: none;
+  color: #333;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff0f5;
+  border: 2px solid #ff69b4;
+  border-radius: 5px;
+  transition: 0.2s all;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #ff1493;
+  border-color: #ff1493;
+}
+
+.checkbox-container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
 
   </style>
 </head>
@@ -267,6 +320,13 @@
     </div>
     <input type="hidden" name="preferredLocation" required>
   </div>
+</div>
+<div class="form-group">
+  <label class="checkbox-container">
+    I agree to the terms of the Data Retention Policy
+    <input type="checkbox" name="agreeTerms" id="agreeTerms" required>
+    <span class="checkmark"></span>
+  </label>
 </div>
 
     <label style="font-weight:bold; display:block; margin-top:10px;">Are you a cat?</label>
