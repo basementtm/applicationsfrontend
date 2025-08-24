@@ -129,11 +129,29 @@
       .radio-group label { padding: 8px 15px; font-size: 0.9rem; min-width: 70px; }
       button { font-size: 0.95rem; max-width: 100%; }
     }
+    #notice-banner {
+    background-color: #ff1493;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+    white-space: normal;
+    width: 100%;          /* matches container width */
+    box-sizing: border-box;
+}
   </style>
 </head>
 <body>
-
   <div id="form-container">
+    <div class="container">
+    <!-- Notice Banner -->
+    <div id="notice-banner">
+        ⚠️ Applications are temporarily closing at 10PM CEST on August 24th, 2025. Why? Because I'm going to sleep.
+    </div>
     <h1>basement application form</h1>
     <form action="https://submit.emmameowss.gay/submit.php" method="POST" id="applicationForm">
       <input type="text" name="name" placeholder="name" required>
@@ -188,6 +206,16 @@
 
     catYes.addEventListener("change", () => { ownerField.style.display = "block"; });
     catNo.addEventListener("change", () => { ownerField.style.display = "none"; });
+    // Auto-hide notice banner after closing date
+    (function() {
+      // Closing date in UTC (convert 10PM CEST to 8PM UTC)
+      const closingUTC = new Date(Date.UTC(2025, 7, 24, 20, 0, 0)); // August is month 7 (0-indexed)
+      const now = new Date();
+      if (now >= closingUTC) {
+        const banner = document.getElementById('notice-banner');
+        if (banner) banner.style.display = 'none';
+      }
+    })();
   </script>
 </body>
 </html>
