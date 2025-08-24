@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Application Form</title>
+</head>
+<body>
+  <h2>Application Form</h2>
+  <form action="submit.php" method="POST">
+    <!-- Name -->
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <!-- Current Location -->
+    <label for="location">Current Location:</label><br>
+    <input type="text" id="location" name="location" required><br><br>
+
+    <!-- Girlfriend's Phone Number (optional) -->
+    <label for="gfphone">Girlfriend’s Phone Number (optional):</label><br>
+    <input type="tel" id="gfphone" name="gfphone" placeholder="123-456-7890"><br><br>
+
+    <!-- Reason for Applying -->
+    <label for="reason">Reason for Applying:</label><br>
+    <textarea id="reason" name="reason" rows="4" cols="40" required></textarea><br><br>
+
+    <!-- Number of Times Slept in Cage in Past Week -->
+    <label for="cage">Number of Times Slept in Cage (Past Week):</label><br>
+    <input type="number" id="cage" name="cage" min="0" required><br><br>
+
+    <!-- Are you a cat? -->
+    <label>Are you a cat?</label><br>
+    <input type="radio" id="catYes" name="isCat" value="Yes" required>
+    <label for="catYes">Yes</label><br>
+    <input type="radio" id="catNo" name="isCat" value="No" required>
+    <label for="catNo">No</label><br><br>
+
+    <!-- Submit -->
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
