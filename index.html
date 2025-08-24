@@ -4,9 +4,123 @@
   <meta charset="UTF-8">
   <title>basement application form</title>
   <style>
-    body { font-family: Arial, sans-serif; }
-    #maintenance { text-align: center; padding: 50px; }
-    #maintenance h1 { color: #ff6600; }
+    /* Page layout */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffc0cb; /* light pink */
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      margin: 0;
+      align-items: center;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #ff1493; /* darker pink for title */
+    }
+
+    /* Form container */
+    #form-container, #maintenance {
+      background-color: #fff0f5; /* very light pink */
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    /* Inputs and textarea */
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    /* Radio buttons as big buttons */
+    .radio-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 15px 0;
+    }
+
+    .radio-group label {
+      background-color: #ff69b4;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .radio-group input[type="radio"] {
+      display: none; /* hide the actual radio button */
+    }
+
+    .radio-group input[type="radio"]:checked + label {
+      background-color: #ff1493;
+    }
+
+    /* Submit button */
+    button {
+      padding: 12px 25px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    /* Footer styling */
+    /* Footer styling */
+    footer {
+      font-size: 0.9rem;
+      color: #333;
+      padding-bottom: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 500px) {
+      #form-container, #maintenance {
+        padding: 20px;
+      }
+
+      input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea {
+        font-size: 0.9rem;
+      }
+
+      .radio-group label {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        min-width: 70px;
+      }
+
+      button {
+        font-size: 0.95rem;
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -52,6 +166,10 @@
     <h1>🚧 offline</h1>
     <p>im fuckin with something so this is offline itll be back soon</p>
   </div>
+
+  <footer>
+    &copy; Emma 2025 -- half of this site was made with ai btw mostly the style shit and the backend -- the old version is available at https://apply.emmameowss.gay/old
+  </footer>
 
   <!-- Script to check backend maintenance status -->
   <script>
