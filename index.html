@@ -9,20 +9,12 @@
       background-color: #ffc0cb;
       color: #333;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
       margin: 0;
-      align-items: center;
       padding: 20px;
     }
-
-    header, footer {
-      text-align: center;
-      padding: 20px;
-    }
-
-    header h1 { color: #ff1493; margin:0; }
 
     #form-container, #maintenance {
       background-color: #fff0f5;
@@ -33,6 +25,25 @@
       max-width: 400px;
       width: 90%;
       box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: #ff1493;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeSlideDown 0.8s forwards;
+    }
+
+    @keyframes fadeSlideDown {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea {
@@ -43,6 +54,14 @@
       border-radius: 8px;
       font-size: 1rem;
       box-sizing: border-box;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus,
+    input[type="number"]:focus, textarea:focus {
+      transform: scale(1.02);
+      box-shadow: 0 0 5px rgba(255,20,147,0.5);
+      outline: none;
     }
 
     .radio-group {
@@ -60,15 +79,21 @@
       border-radius: 12px;
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
       min-width: 80px;
       text-align: center;
     }
 
     .radio-group input[type="radio"] { display: none; }
 
-    .radio-group input[type="radio"]:checked + label { background-color: #ff1493; }
+    .radio-group input[type="radio"]:checked + label {
+      background-color: #ff1493;
+      transform: scale(1.05);
+    }
 
+    .radio-group label:hover { transform: scale(1.05); }
+
+    /* Submit button animations */
     button {
       padding: 12px 25px;
       background-color: #ff69b4;
@@ -77,15 +102,26 @@
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
       margin-top: 10px;
       width: 100%;
       max-width: 200px;
     }
 
-    button:hover { background-color: #ff1493; }
+    button:hover {
+      background-color: #ff1493;
+      animation: pulse 0.6s ease-in-out;
+    }
 
-    footer { font-size: 0.9rem; color: #333; padding-bottom: 20px; }
+    button:active { transform: scale(0.95); }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    footer { font-size: 0.9rem; color: #333; padding-top: 20px; text-align: center; }
 
     @media (max-width: 500px) {
       #form-container, #maintenance { padding: 20px; }
@@ -96,11 +132,9 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>basement application form</h1>
-  </header>
 
   <div id="form-container">
+    <h1>basement application form</h1>
     <form action="https://submit.emmameowss.gay/submit.php" method="POST" id="applicationForm">
       <input type="text" name="name" placeholder="name" required>
       <input type="email" name="email" placeholder="email" required>
@@ -129,10 +163,6 @@
     <h1>🚧 site temporarily offline</h1>
     <p>we're changing the site a bit please standby - applications are back asap!</p>
   </div>
-
-  <footer>
-    &copy;Emma 2025 even though most of this site's style and backend was made with AI
-  </footer>
 
   <script>
     // Maintenance check
