@@ -206,16 +206,6 @@
 
     catYes.addEventListener("change", () => { ownerField.style.display = "block"; });
     catNo.addEventListener("change", () => { ownerField.style.display = "none"; });
-    // Auto-hide notice banner after closing date
-    (function() {
-      // Closing date in UTC (convert 10PM CEST to 8PM UTC)
-      const closingUTC = new Date(Date.UTC(2025, 7, 24, 20, 0, 0)); // August is month 7 (0-indexed)
-      const now = new Date();
-      if (now >= closingUTC) {
-        const banner = document.getElementById('notice-banner');
-        if (banner) banner.style.display = 'none';
-      }
-    })();
   </script>
 </body>
 </html>
