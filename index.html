@@ -144,8 +144,8 @@
     box-sizing: border-box;
 }
 .form-group {
-  margin: 10px 0;
-  text-align: left;
+  position: relative; /* ensures internal absolute elements stay inside */
+  margin: 15px 0;
 }
 
 /* Base animated select */
@@ -197,6 +197,7 @@
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 1s forwards;
+  z-index: 1;
 }
 
 .custom-dropdown .selected {
@@ -236,6 +237,7 @@
 
 .custom-dropdown.active .options {
   display: block;
+  z-index: 10;
 }
 /* Custom checkbox styling */
 .checkbox-container {
